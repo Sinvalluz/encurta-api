@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 @ToString
 @Table(name = "link")
 public class Link {
