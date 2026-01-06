@@ -7,6 +7,7 @@ import com.SinvalDev.encurta_api.mapper.LinkMapper;
 import com.SinvalDev.encurta_api.model.Link;
 import com.SinvalDev.encurta_api.repository.LinkRepository;
 import com.SinvalDev.encurta_api.utils.ShortCodeGenerator;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,11 @@ public class LinkService {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao criar link", e);
         }
+    }
+
+    public LinkDto findLinkByShortCode(String shortCode) {
+        Link link = linkRepository.findByShortCode(shortCode).orElseThrow(() -> new EntityNotFoundException("Link não foi encontrado"));
+
+        return linkMapper.linkEntityToLinkDto(link);
     }
 }
