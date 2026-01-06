@@ -25,10 +25,16 @@ public class LinkService {
 
     public LinkDto create(LinkRequestDto linkRequestDto) {
         LocalDateTime dateNow = LocalDateTime.now();
+        String shortCode;
+
+        do {
+            shortCode = ShortCodeGenerator.generate();
+        } while (linkRepository.findByShortCode(shortCode).isPresent());
+
         try {
             Link link = Link.builder()
                     .originalUrl(linkRequestDto.originalUrl())
-                    .shortCode(ShortCodeGenerator.generate())
+                    .shortCode(shortCode)
                     .creationDate(dateNow).build();
 
             Link linkSaved = linkRepository.save(link);
