@@ -1,6 +1,7 @@
 package com.SinvalDev.encurta_api.mapper;
 
 import com.SinvalDev.encurta_api.dto.LinkDto;
+import com.SinvalDev.encurta_api.dto.LinkResponseByShortCodeDto;
 import com.SinvalDev.encurta_api.dto.LinkResponseDto;
 import com.SinvalDev.encurta_api.model.Link;
 import org.mapstruct.Mapper;
@@ -17,4 +18,8 @@ public interface LinkMapper {
     LinkDto linkResponseDtoToLinkDto(LinkResponseDto linkResponseDto);
 
     LinkResponseDto linkDtoToLinkResponseDto(LinkDto linkDto);
+
+    LinkDto linkResponseByShortCodeDtoToLinkDto(LinkResponseByShortCodeDto linkResponseByShortCodeDto);
+
+    LinkResponseByShortCodeDto linkDtoToLinkResponseByShortCodeDto(LinkDto linkDto);
 }
